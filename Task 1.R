@@ -11,26 +11,7 @@ formnom<-function(num){
   }
   return(corr_number)
 }
-
-
-
-
-
-corr_number
-chartest<-c("hola", "a", "hambe")
-nchar(chartest)==1
-ij<-0
-for (i in chartest){
-    ij<-ij+1
-}
-num3<-c()
-
-append(num3,"500")
-num2<-c(5,2,30)
-longnum2<-length(num2)
-longnum2
-formnom(num2)
-
+formnom(c(2,5,100))
 
 x<-'A:/Downloads/rprog_data_specdata/specdata/'
 num_monitor<-5
