@@ -17,7 +17,7 @@ pollutantmean<-function(directory='A:/Downloads/rprog_data_specdata/specdata/',p
   suma<-0
   n<-0
     for (i in real_IDS){
-  archivo<-read.csv(paste(x,formnom(i),".csv",sep="")) ##Asignamos los datos de ese monitor
+  archivo<-read.csv(paste(directory,formnom(i),".csv",sep="")) ##Asignamos los datos de ese monitor
 
     if (pollutant=="sulfate"){
       suma<-suma+sum(archivo$sulfate, na.rm = TRUE)
