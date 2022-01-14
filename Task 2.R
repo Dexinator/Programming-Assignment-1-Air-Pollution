@@ -17,13 +17,17 @@ observ_amount<-function(directory='A:/Downloads/rprog_data_specdata/specdata/',i
   monitor_ID<-c()
   nobs<-c()
   for (i in real_IDS){
-    archivo<-read.csv(paste(x,formnom(i),".csv",sep="")) ##Asignamos los datos de ese monitor
-    
+    archivo<-read.csv(paste(directory,formnom(i),".csv",sep="")) ##Asignamos los datos de ese monitor
+    x3<-0
     monitor_ID<-append(monitor_ID,i)
-    nobs<-append(nobs,length(archivo$sulfate[!is.na(archivo$sulfate)]))
+    for (p in 1:length(archivo$Date)){
+      x3<-append(x3,!is.na(archivo$sulfate[p]) & !is.na(archivo$nitrate[p])) #verificamos que ninguno de los dos valores sea NA
+    }
+    
+    nobs<-append(nobs,sum(x3))
     }
   data.frame(monitor_ID,nobs)
 }
-resultado<-observ_amount(id=c(2, 4, 8, 10, 12))
+resultado<-observ_amount(id=30:25)
 resultado
 str(resultado)
