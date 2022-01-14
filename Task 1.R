@@ -11,21 +11,22 @@ formnom<-function(num){
   }
   return(corr_number)
 }
-formnom(c(2,5,100))
 
-x<-'A:/Downloads/rprog_data_specdata/specdata/'
-num_monitor<-5
-archivo<-read.csv(paste(x,formnom(num_monitor),".csv",sep=""))
-mean(archivo$nitrate, na.rm = TRUE)
-
-pollutantmean<-function(directory='A:/Downloads/rprog_data_specdata/specdata/',pollutant,id){
-  archivo<-read.csv(paste(x,formnom(id),".csv",sep="")) ##Asignamos los datos de ese monitor
+pollutantmean<-function(directory='A:/Downloads/rprog_data_specdata/specdata/',pollutant,id=1:332){
+  real_IDS<-formnom(id)
+  suma<-0
+  n<-0
+    for (i in real_IDS){
+  archivo<-read.csv(paste(x,formnom(i),".csv",sep="")) ##Asignamos los datos de ese monitor
 
     if (pollutant=="sulfate"){
-    mean(archivo$sulfate, na.rm = TRUE)
+      suma<-suma+sum(archivo$sulfate, na.rm = TRUE)
+      n<-n+length(archivo$sulfate[!is.na(archivo$sulfate)])
   }else if(pollutant=="nitrate"){
-    mean(archivo$nitrate, na.rm = TRUE)
-  }
+    suma<-suma+sum(archivo$nitrate, na.rm = TRUE)
+    n<-n+length(archivo$nitrate[!is.na(archivo$nitrate)])
+  }}
+  suma/n
 }
-pollutantmean(pollutant = "nitrate",id=5)
+pollutantmean(pollutant = "nitrate",id=c(1:332))
 
